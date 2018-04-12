@@ -1,6 +1,8 @@
 # ESP8266 Monitor #
 
-Broadcasts the current state of an ESP8266 and DS18b20 temperature monitor, whilst keeping current draw to a minimum - ideal for battery powered projects.
+Broadcasts the current state of an ESP8266 and DS18b20 temperature monitor, using deep sleep mode to keep current draw to a minimum - ideal for battery powered projects.
+
+Measurements are broadcast as JSON data to the local network over UDP.
 
 https://eartoearoak.com/software/esp8266_monitor
 
@@ -19,6 +21,7 @@ al [at] eartoearoak.com
 
 
 
+
 ## Usage
 
 ![](schematic\breadboard.png)
@@ -34,6 +37,26 @@ Edit 'config.h' changing the necessary `#define` statements to suit your needs:
 
 
 Use the Arduino IDE to upload the 'ESP8266_Monitor.ino' sketch.
+
+
+
+## Output
+
+JSON formatted data is broadcast to the local network on the default port of 7711.
+
+Example output:
+
+`{"Voltage":0.283594,"GPIO0":true,"GPIO2":true,"GPIO5":true,"GPIO12":true,"GPIO13":true,"GPIO14":true,"GPIO15":false,"Temperature":14.3125,"Host":"ESP_F1DCD0","RSSI":-37} `
+
+
+
+## Electrical Characteristics
+
+| Parameter       | Min   | Max  | Units |
+| --------------- | ----- | ---- | ----- |
+| Supply Voltage  | 3.0   | 3.6  | V     |
+| ESP8266 Current | 0.002 | 70   | mA    |
+| DS18b20 Current | 0.75  | 1    | mA    |
 
 
 
