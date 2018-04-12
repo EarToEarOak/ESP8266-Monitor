@@ -1,0 +1,40 @@
+PUT _template/esp_monitors
+{
+	"index_patterns": ["esp_monitors-*"],
+	"mappings": {
+		"doc": {
+			"properties": {
+				"GPIO0": {
+					"type": "boolean"
+				},
+				"GPIO12": {
+					"type": "boolean"
+				},
+				"GPIO13": {
+					"type": "boolean"
+				},
+				"GPIO14": {
+					"type": "boolean"
+				},
+				"GPIO15": {
+					"type": "boolean"
+				},
+				"GPIO2": {
+					"type": "boolean"
+				},
+				"GPIO5": {
+					"type": "boolean"
+				},
+				"RSSI": {
+					"type": "long"
+				},
+				"Temperature": {
+					"type": "float"
+				},
+				"Voltage": {
+					"type": "float"
+				}
+			}
+		}
+	}
+}

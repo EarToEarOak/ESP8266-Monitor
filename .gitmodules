@@ -1,0 +1,3 @@
+[submodule "src/Arduino-Temperature-Control-Library"]
+	path = src/Arduino-Temperature-Control-Library
+	url = https://github.com/milesburton/Arduino-Temperature-Control-Library.git
