@@ -24,7 +24,7 @@ al [at] eartoearoak.com
 
 ## Usage
 
-![](schematic\breadboard.png)
+![Breadboard Schematic](schematic/breadboard.png)
 
 Edit 'config.h' changing the necessary `#define` statements to suit your needs:
 
