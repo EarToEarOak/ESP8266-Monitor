@@ -7,4 +7,4 @@ Requires:
 
 Plots can be viewed by pointing your web browser to http://127.0.0.1:8050/ 
 
-![Screenshot](/images/screenshot.png)
+![Screenshot](images/screenshot.png)
