@@ -36,7 +36,7 @@
 #else
 #define DEBUG_SERIAL(message)
 #define DEBUG_SERIAL_LN(message)
-#define DEBUG_SERIAL_F(message)
+#define DEBUG_SERIAL_F(message, ...)
 #endif
 
 #endif
