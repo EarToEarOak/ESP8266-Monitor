@@ -44,7 +44,7 @@
 
 // ADC parameters if not using ADC_VCC
 #define VCC 3.3     // Supply voltage
-#define DIVIDER 2   // Resitor divider ratio
+#define DIVIDER 2   // Resistor divider ratio
 
 // DS180b20 GPIO
 #define ONE_WIRE_BUS 4
