@@ -28,10 +28,15 @@
 float Adc::_adc;
 
 void Adc::begin() {
+#ifdef ADC_SUPPLY
+  _adc = ESP.getVcc();
+  _adc /= 1000;
+#else
   _adc = analogRead(A0);
   _adc *= VCC;
   _adc /= 1024;
   _adc /= DIVIDER;
+#endif
 }
 
 void Adc::get(JsonObject& json) {

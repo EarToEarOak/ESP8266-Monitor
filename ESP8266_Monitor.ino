@@ -24,6 +24,10 @@
 
 #include "ESP8266_Monitor.h"
 
+#ifdef ADC_SUPPLY
+ADC_MODE(ADC_VCC);
+#endif
+
 Adc adc;
 Gpio gpio;
 Temperature temperature;

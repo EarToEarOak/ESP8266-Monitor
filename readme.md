@@ -33,6 +33,7 @@ Edit 'config.h' changing the necessary `#define` statements to suit your needs:
 - INTERVAL:  The time between measurements (if this is too short it will never deep sleep)
 - VCC: The power supply voltage (3 - 3.6 v)
 - DIVIDER: If you have a voltage divider on the ADC input
+- ADC_SUPPLY: Uncomment to measure the supply voltage rather than the input on the ADC pin
 
 
 
