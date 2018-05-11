@@ -22,13 +22,14 @@
 #  The license is available from <http://www.gnu.org/licenses/gpl-2.0.html>.
 #
 
+from collections import defaultdict
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Output, Event
 import datetime
 import json
-import plotly.graph_objs as go
+from plotly.graph_objs import Scatter, Layout
 import socket
 import threading
 import time
@@ -47,21 +48,32 @@ app.layout = html.Div(children=[
 @app.callback(Output('temperature', 'figure'),
               events=[Event('interval', 'interval')])
 def updateTemperature():
-    x = []
-    y = []
-
+    traces = []
+    sensors = defaultdict(list)
+    times = defaultdict(list)
     for data in recData:
-        if 'Time' in data and 'Temperature' in data:
-            x.append(datetime.datetime.fromtimestamp(data['Time']))
-            y.append(data['Temperature'])
+        if 'Time' in data and 'Host' in data:
+            time = datetime.datetime.fromtimestamp(data['Time'])
+            host = data['Host']
+            temperatures = [(key, value)
+                            for key, value in data.items() if 'Temperature_' in key]
+            for temperature in temperatures:
+                name = host + " " + temperature[0]
+                sensors[name].append(temperature[1])
+                times[name].append(time)
 
-    trace = go.Scatter(x=x, y=y)
-    layout = go.Layout(
+    for sensor, temperature in sorted(sensors.items()):
+        trace = Scatter(x=times[sensor],
+                        y=temperature,
+                        name=sensor)
+        traces.append(trace)
+
+    layout = Layout(
         title='Temperature',
         xaxis={'title': 'Time'},
-        yaxis={'title': '°C', })
+        yaxis={'title': '°C'})
 
-    return {'data': [trace], 'layout': layout}
+    return {'data': traces, 'layout': layout}
 
 
 class reciever(threading.Thread):
