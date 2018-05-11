@@ -41,7 +41,8 @@ class Temperature {
   private:
     static OneWire _oneWire;
     static DallasTemperature _sensors;
-    static float _temperature;
+    static float* _temperatures;
+    static size_t _temperature_sensors;
 };
 
 #endif
