@@ -28,7 +28,7 @@ PUT _template/esp_monitors
 				"RSSI": {
 					"type": "long"
 				},
-				"Temperature": {
+				"Temperature_*": {
 					"type": "float"
 				},
 				"Voltage": {
