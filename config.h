@@ -39,7 +39,7 @@
 // GPIOs to monitor
 #define GPIOS {0, 2, 5, 12, 13, 14, 15}
 
-// Uncomment to measure the supply voltage
+// Uncomment to measure the supply voltage instead of the ADC pin
 //#define ADC_SUPPLY
 
 // ADC parameters if not using ADC_VCC
