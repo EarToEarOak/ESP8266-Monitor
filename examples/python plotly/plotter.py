@@ -29,11 +29,13 @@ import dash_html_components as html
 from dash.dependencies import Output, Event
 import datetime
 import json
+import os
 from plotly.graph_objs import Scatter, Layout
 import socket
 import threading
 import time
 
+SAVEDATA = "recData.json"
 
 recData = []
 
@@ -55,6 +57,13 @@ def updateTemperature():
         if 'Time' in data and 'Host' in data:
             time = datetime.datetime.fromtimestamp(data['Time'])
             host = data['Host']
+            
+            if host=='None':
+                for sensor in sensors:
+                    sensors[sensor].append(None)
+                    times[sensor].append(time)               
+                continue
+            
             temperatures = [(key, value)
                             for key, value in data.items() if 'Temperature_' in key]
             for temperature in temperatures:
@@ -84,14 +93,28 @@ class reciever(threading.Thread):
         self._sock.bind(('', 7711))
 
     def run(self):
-        while(True):
+        f = open(SAVEDATA, 'a')
+
+        while True:
             rec = self._sock.recvfrom(1024)
             data = json.loads(rec[0])
             data['Time'] = time.time()
             recData.append(data)
+            f.write(json.dumps(data) + '\n')
+            f.flush()
 
 
 if __name__ == '__main__':
+    if os.path.isfile(SAVEDATA):
+        f = open(SAVEDATA, 'r+')
+        for line in f:
+            recData.append(json.loads(line))
+
+        gap = {"Host": "None", "Time": time.time()}
+        recData.append(gap)
+        f.write(json.dumps(gap) + '\n')
+        f.close()
+
     thread = reciever()
     thread.start()
 
