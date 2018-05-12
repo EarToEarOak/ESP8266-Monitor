@@ -33,6 +33,9 @@ PUT _template/esp_monitors
 				},
 				"Voltage": {
 					"type": "float"
+				},
+				"Host": {
+					"type": "keyword"
 				}
 			}
 		}
