@@ -39,10 +39,8 @@ class Temperature {
     void get(JsonObject& json);
 
   private:
-    static OneWire _oneWire;
-    static DallasTemperature _sensors;
-    static float* _temperatures;
-    static size_t _temperature_sensors;
+    static OneWire* _oneWires;
+    static DallasTemperature* _sensors;
 };
 
 #endif

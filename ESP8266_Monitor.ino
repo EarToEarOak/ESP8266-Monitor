@@ -57,8 +57,8 @@ void setup() {
 
   sint32_t sleep = millis() - start;
   sleep = INTERVAL - sleep;
-  if (sleep < 0)
-    sleep = 0;
+  if (sleep < 50)
+    sleep = 50;
   DEBUG_SERIAL_F("\nSleeping for %.3fs\n", sleep / 1000.0f);
   ESP.deepSleep(sleep * 1000);
 }
