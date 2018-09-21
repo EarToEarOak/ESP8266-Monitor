@@ -21,12 +21,12 @@
  The license is available from <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
 
-#include "temperature.h"
+#include "sensor_ds18.h"
 
-OneWire* Temperature::_oneWires;
-DallasTemperature* Temperature::_sensors;
+OneWire* SensorDS18::_oneWires;
+DallasTemperature* SensorDS18::_sensors;
 
-void Temperature::begin() {
+void SensorDS18::begin() {
 	uint8_t buses[] = ONE_WIRE_BUSES;
 	size_t buses_length = sizeof(buses) / sizeof(buses[0]);
 
@@ -43,7 +43,7 @@ void Temperature::begin() {
 	}
 }
 
-void Temperature::get(JsonObject& json) {
+void SensorDS18::get(JsonObject& json) {
 	uint8_t buses[] = ONE_WIRE_BUSES;
 	size_t buses_length = sizeof(buses) / sizeof(buses[0]);
 	for (size_t i = 0; i < buses_length; i++) {

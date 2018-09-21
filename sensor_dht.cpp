@@ -19,30 +19,23 @@
  GNU General Public License for more details.
 
  The license is available from <http://www.gnu.org/licenses/gpl-2.0.html>.
-*/
+ */
 
+#include "sensor_dht.h"
 
-#ifndef HEADER_TEMPERATURE
-#define HEADER_TEMPERATURE
+DHT SensorDht::_dht(DHT_GPIO, DHT_TYPE);
+float SensorDht::_humid;
+float SensorDht::_temp;
 
-#include <math.h>
+void SensorDht::begin() {
+	_dht.begin();
 
-#include <OneWire.h>
-#include <ArduinoJson.h>
+	_humid = _dht.readHumidity();
+	_temp = _dht.readTemperature();
+}
 
-#include "config.h"
-#include "debug.h"
-#include "src/Arduino-Temperature-Control-Library/DallasTemperature.h"
+void SensorDht::get(JsonObject& json) {
+	json["Humidity"] = _humid;
+	json["Temperature_DHT"] = _temp;
 
-
-class Temperature {
-  public:
-    void begin();
-    void get(JsonObject& json);
-
-  private:
-    static OneWire* _oneWires;
-    static DallasTemperature* _sensors;
-};
-
-#endif
+}

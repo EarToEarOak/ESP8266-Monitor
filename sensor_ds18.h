@@ -19,42 +19,30 @@
  GNU General Public License for more details.
 
  The license is available from <http://www.gnu.org/licenses/gpl-2.0.html>.
- */
+*/
 
-#ifndef HEADER_CONFIG
-#define HEADER_CONFIG
 
-// WiFi Access Point
-#define SSID_NAME "Wifi access point name"
-#define SSID_PASSWORD "Wifi password"
-#define WIFI_RETRIES 30
+#ifndef HEADER_SENSOR_DS18
+#define HEADER_SENSOR_DS18
 
-// Broadcast port
-#define UDP_PORT 7711
+#include <math.h>
 
-// Refresh interval (ms)
-#define INTERVAL 60000
+#include <OneWire.h>
+#include <ArduinoJson.h>
 
-// GPIOs to monitor
-#define GPIOS {0, 2, 12, 13, 15}
+#include "config.h"
+#include "debug.h"
+#include "src/Arduino-Temperature-Control-Library/DallasTemperature.h"
 
-// Uncomment to measure the supply voltage instead of the ADC pin
-//#define ADC_SUPPLY
 
-// ADC parameters if not using ADC_VCC
-#define VCC 3.3     // Supply voltage
-#define DIVIDER 2   // Resistor divider ratio
+class SensorDS18 {
+  public:
+    void begin();
+    void get(JsonObject& json);
 
-// DS180b20 GPIO
-#define ONE_WIRE_BUSES {4, 5}
-// DS180b20 resolution
-#define RESOLUTION 10
-
-// DHT11/21/22 GPIO
-#define DHT_GPIO 14
-#define DHT_TYPE DHT22
-
-// Debug to serial port
-#define DEBUG
+  private:
+    static OneWire* _oneWires;
+    static DallasTemperature* _sensors;
+};
 
 #endif

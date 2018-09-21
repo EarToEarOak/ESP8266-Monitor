@@ -34,7 +34,8 @@
 #include "debug.h"
 #include "gpio.h"
 #include "station.h"
-#include "temperature.h"
+#include "sensor_dht.h"
+#include "sensor_ds18.h"
 #include "broadcast.h"
 
 #endif

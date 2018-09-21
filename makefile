@@ -8,7 +8,9 @@ UPLOAD_SPEED = 921600
 
 LIBS = 	$(ESP_LIBS)/ESP8266WiFi \
 		$(ESP_LIBS)/Wire \
+		$(ARDUINO_LIBS)/Adafruit_Unified_Sensor \
 		$(ARDUINO_LIBS)/ArduinoJson/src \
+		$(ARDUINO_LIBS)/DHT_sensor_library \
 		$(ARDUINO_LIBS)/OneWire \
 		src/Arduino-Temperature-Control-Library \
 

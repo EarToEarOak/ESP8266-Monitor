@@ -30,7 +30,8 @@ ADC_MODE(ADC_VCC);
 
 Adc adc;
 Gpio gpio;
-Temperature temperature;
+SensorDS18 sensorDs18;
+SensorDht sensorDht;
 Station station;
 Broadcast broadcast;
 uint32_t start;
@@ -43,7 +44,8 @@ void setup() {
 
   adc.begin();
   gpio.begin();
-  temperature.begin();
+  sensorDht.begin();
+  sensorDs18.begin();
   station.begin(SSID_NAME, SSID_PASSWORD);
 
   DynamicJsonBuffer jsonBuffer;
@@ -51,7 +53,8 @@ void setup() {
 
   adc.get(json);
   gpio.get(json);
-  temperature.get(json);
+  sensorDht.get(json);
+  sensorDs18.get(json);
   broadcast.multicast(json);
   json.prettyPrintTo(Serial);
 
