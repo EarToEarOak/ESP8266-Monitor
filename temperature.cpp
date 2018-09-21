@@ -51,6 +51,8 @@ void Temperature::get(JsonObject& json) {
 			DeviceAddress address;
 			_sensors[i].getAddress(address, j);
 			float temperature = _sensors[i].getTempCByIndex(j);
+			if (temperature ==  85.0 || temperature == -127.0)
+				temperature = NAN;
 
 			char sensor[17];
 			snprintf(sensor, sizeof(sensor), "Temperature_%x%x", address[6],

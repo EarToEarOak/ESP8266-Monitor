@@ -25,6 +25,8 @@
 #ifndef HEADER_TEMPERATURE
 #define HEADER_TEMPERATURE
 
+#include <math.h>
+
 #include <OneWire.h>
 #include <ArduinoJson.h>
 
