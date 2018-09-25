@@ -24,6 +24,7 @@
 #ifndef HEADER_SENSOR_DHT
 #define HEADER_SENSOR_DHT
 
+#include <Arduino.h>
 #include <ArduinoJson.h>
 #include <DHT.h>
 

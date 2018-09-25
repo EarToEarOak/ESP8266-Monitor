@@ -31,6 +31,7 @@ void SensorDht::begin() {
 	_dht.begin();
 
 	_humid = _dht.readHumidity();
+	yield();
 	_temp = _dht.readTemperature();
 }
 
