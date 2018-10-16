@@ -36,7 +36,9 @@ void SensorDht::begin() {
 }
 
 void SensorDht::get(JsonObject& json) {
-	json["Humidity"] = _humid;
-	json["Temperature_DHT"] = _temp;
+	if (!isnan(_humid))
+		json["Humidity"] = _humid;
+	if (!isnan(_temp))
+		json["Temperature_DHT"] = _temp;
 
 }
